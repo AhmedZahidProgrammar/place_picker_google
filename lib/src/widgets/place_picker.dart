@@ -429,6 +429,7 @@ class PlacePickerState extends State<PlacePicker>
         child: CompositedTransformTarget(
           link: _layerLink,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               IconButton(onPressed: () {
                 Navigator.pop(context);
