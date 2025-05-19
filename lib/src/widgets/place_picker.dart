@@ -372,6 +372,7 @@ class PlacePickerState extends State<PlacePicker>
     return Stack(
       children: [
         _buildGoogleMap(),
+
         if (widget.showSearchInput) _buildSearchInput(),
         if (widget.myLocationButtonEnabled) _buildMyLocationButton(),
         if (widget.usePinPointingSearch) _buildPinPointingIndicator(),
@@ -427,11 +428,18 @@ class PlacePickerState extends State<PlacePicker>
         padding: widget.searchInputConfig.padding ?? EdgeInsets.zero,
         child: CompositedTransformTarget(
           link: _layerLink,
-          child: SearchInput(
-            key: searchInputKey,
-            inputConfig: widget.searchInputConfig,
-            onSearchInput: searchPlace,
-            decorationConfig: widget.searchInputDecorationConfig,
+          child: Column(
+            children: [
+              IconButton(onPressed: () {
+                Navigator.pop(context);
+              }, icon: Icon(Icons.arrow_back_ios)),
+              SearchInput(
+                key: searchInputKey,
+                inputConfig: widget.searchInputConfig,
+                onSearchInput: searchPlace,
+                decorationConfig: widget.searchInputDecorationConfig,
+              ),
+            ],
           ),
         ),
       ),
